@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 애니메이션 예시</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            max-width: 800px;
+        }
+
+        .example {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #444;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        /* 예시 1: 크기 변화 (hover) - 살짝 회전 및 그림자 추가 */
+        .box-scale {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 0 auto;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .box-scale:hover {
+            transform: scale(1.3) rotate(5deg);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 예시 2: 회전 (hover) - 회전 각도 증가 및 확대 효과 */
+        .box-rotate {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            margin: 0 auto;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .box-rotate:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* 예시 3: 이동 (hover) - 수평 이동과 수직 이동을 동시에 적용 */
+        .box-translate {
+            width: 100px;
+            height: 100px;
+            background-color: #2ecc71;
+            margin: 0 auto;
+            transition: transform 0.5s ease-out;
+        }
+        
+        .box-translate:hover {
+            transform: translateY(-30px) translateX(10px);
+        }
+
+        /* 예시 4: 자동 펄스 애니메이션 - 크기와 투명도 변화 추가 */
+        .box-keyframes {
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            margin: 0 auto;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 예시 5: 다중 변환 (hover) - 회전, 확대, 배경색, 모서리 둥글기, 그림자 효과 추가 */
+        .box-multiple {
+            width: 100px;
+            height: 100px;
+            background-color: #9b59b6;
+            margin: 0 auto;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), background-color 0.5s ease, border-radius 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .box-multiple:hover {
+            transform: rotate(45deg) scale(1.3);
+            background-color: #8e44ad;
+            border-radius: 50%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 예시 6: 복잡한 애니메이션 - 이동, 회전, 확대 변화와 함께 색상 및 둥근 모서리 변화 */
+        .box-complex {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* 내부 이미지가 부모 요소를 벗어나지 않도록 설정 */
+    animation: move 4s infinite alternate;
+}
+
+/* 이미지가 부모 컨테이너에 딱 맞게 채워지도록 설정 */
+.box-complex img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.box-complex img:nth-child(1) {
+    left: 0;
+}
+
+.box-complex img:nth-child(2) {
+    right: 0;
+}
+
+
+        @keyframes move {
+            0% {
+                transform: translateX(-50px) rotate(0deg) scale(1);
+
+                border-radius: 50%;
+            }
+            25% {
+                transform: translateX(0) rotate(90deg) scale(1.1);
+
+                border-radius: 50%;
+            }
+            50% {
+                transform: translateX(50px) rotate(180deg) scale(1.2);
+
+                border-radius: 50%;
+            }
+            75% {
+                transform: translateX(0) rotate(270deg) scale(1.1);
+      
+                border-radius: 50%;
+            }
+            100% {
+                transform: translateX(-50px) rotate(360deg) scale(1);
+                
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 애니메이션 예시</h1>
+    
+    <div class="container">
+        <div class="example">
+            <h2>확대/축소 (hover)</h2>
+            <div class="box-scale"></div>
+            <p>마우스를 올려보세요</p>
+        </div>
+        
+        <div class="example">
+            <h2>회전 (hover)</h2>
+            <div class="box-rotate"></div>
+            <p>마우스를 올려보세요</p>
+        </div>
+        
+        <div class="example">
+            <h2>이동 (hover)</h2>
+            <div class="box-translate"></div>
+            <p>마우스를 올려보세요</p>
+        </div>
+        
+        <div class="example">
+            <h2>자동 펄스 애니메이션</h2>
+            <div class="box-keyframes"></div>
+            <p>자동으로 실행됩니다</p>
+        </div>
+        
+        <div class="example">
+            <h2>다중 변환 (hover)</h2>
+            <div class="box-multiple"></div>
+            <p>마우스를 올려보세요</p>
+        </div>
+        
+        <div class="example" id="complex">
+            <h2>복잡한 애니메이션</h2>
+            <div class="box-complex"><img src="youtube.png" alt="youtube"></div>
+            <p>자동으로 실행됩니다</p>
+        </div>
+    </div>
+</body>
+</html>
